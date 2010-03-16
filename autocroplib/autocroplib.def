@@ -1,0 +1,10 @@
+; autocroplib.def : Declares the module parameters.
+
+LIBRARY      "autocroplib.DLL"
+
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE
+	DllInstall		PRIVATE

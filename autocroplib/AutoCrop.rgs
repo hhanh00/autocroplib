@@ -1,0 +1,26 @@
+HKCR
+{
+	autocroplib.AutoCrop.1 = s 'AutoCrop Class'
+	{
+		CLSID = s '{D021EB2C-92BE-49A7-A208-FCE0C6BA3709}'
+	}
+	autocroplib.AutoCrop = s 'AutoCrop Class'
+	{
+		CLSID = s '{D021EB2C-92BE-49A7-A208-FCE0C6BA3709}'
+		CurVer = s 'autocroplib.AutoCrop.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {D021EB2C-92BE-49A7-A208-FCE0C6BA3709} = s 'AutoCrop Class'
+		{
+			ProgID = s 'autocroplib.AutoCrop.1'
+			VersionIndependentProgID = s 'autocroplib.AutoCrop'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{77A95C87-B241-4D29-8B66-D60F66B821F1}'
+		}
+	}
+}

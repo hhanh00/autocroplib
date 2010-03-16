@@ -1,0 +1,41 @@
+// autocroplib.idl : IDL source for autocroplib
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (autocroplib.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(3920B1C6-DD0E-456B-A868-2E517F6DE1D9),
+	dual,
+	nonextensible,
+	helpstring("IAutoCrop Interface"),
+	pointer_default(unique)
+]
+interface IAutoCrop : IDispatch{
+	[id(1), helpstring("method GetAutoCropValues")] HRESULT GetAutoCropValues([in] BSTR fileName);
+	[propget, id(2), helpstring("property Left")] HRESULT Left([out, retval] USHORT* pVal);
+	[propget, id(3), helpstring("property Top")] HRESULT Top([out, retval] USHORT* pVal);
+	[propget, id(4), helpstring("property Right")] HRESULT Right([out, retval] USHORT* pVal);
+	[propget, id(5), helpstring("property Bottom")] HRESULT Bottom([out, retval] USHORT* pVal);
+};
+[
+	uuid(77A95C87-B241-4D29-8B66-D60F66B821F1),
+	version(1.0),
+	helpstring("autocroplib 1.0 Type Library")
+]
+library autocroplibLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(D021EB2C-92BE-49A7-A208-FCE0C6BA3709),
+		helpstring("AutoCrop Class")
+	]
+	coclass AutoCrop
+	{
+		[default] interface IAutoCrop;
+	};
+};

@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "autocroplib", "autocroplib\autocroplib.vcproj", "{766D0FAA-2FE3-40A2-A7DA-B55A983A9001}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "autocroplibPS", "autocroplib\autocroplibPS.vcproj", "{EE28BC05-330D-42F6-A8E5-7A99577018BA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{766D0FAA-2FE3-40A2-A7DA-B55A983A9001} = {766D0FAA-2FE3-40A2-A7DA-B55A983A9001}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "autocrop", "..\autocrop2\autocrop\autocrop.vcproj", "{2E66E6CA-39E2-4CC7-A21F-DBF7AB24CB27}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "autocropClient", "autocropClient\autocropClient.vcproj", "{EBB6FF75-F493-4256-9794-74A33BA86001}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{766D0FAA-2FE3-40A2-A7DA-B55A983A9001}.Debug|Win32.ActiveCfg = Debug|Win32
+		{766D0FAA-2FE3-40A2-A7DA-B55A983A9001}.Debug|Win32.Build.0 = Debug|Win32
+		{766D0FAA-2FE3-40A2-A7DA-B55A983A9001}.Release|Win32.ActiveCfg = Release|Win32
+		{766D0FAA-2FE3-40A2-A7DA-B55A983A9001}.Release|Win32.Build.0 = Release|Win32
+		{EE28BC05-330D-42F6-A8E5-7A99577018BA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EE28BC05-330D-42F6-A8E5-7A99577018BA}.Release|Win32.ActiveCfg = Release|Win32
+		{2E66E6CA-39E2-4CC7-A21F-DBF7AB24CB27}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2E66E6CA-39E2-4CC7-A21F-DBF7AB24CB27}.Debug|Win32.Build.0 = Debug|Win32
+		{2E66E6CA-39E2-4CC7-A21F-DBF7AB24CB27}.Release|Win32.ActiveCfg = Release|Win32
+		{2E66E6CA-39E2-4CC7-A21F-DBF7AB24CB27}.Release|Win32.Build.0 = Release|Win32
+		{EBB6FF75-F493-4256-9794-74A33BA86001}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EBB6FF75-F493-4256-9794-74A33BA86001}.Debug|Win32.Build.0 = Debug|Win32
+		{EBB6FF75-F493-4256-9794-74A33BA86001}.Release|Win32.ActiveCfg = Release|Win32
+		{EBB6FF75-F493-4256-9794-74A33BA86001}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
