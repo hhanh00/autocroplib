@@ -31,7 +31,8 @@ bool scan(DWORD *pStart, int delta, int count)
 }
 
 CAutoCrop::CAutoCrop()
-: m_pEnv(NULL)
+: m_pEnv(NULL),
+m_frameCount(0)
 {
 }
 
@@ -216,10 +217,10 @@ STDMETHODIMP CAutoCrop::GetAutoCropValues(BSTR fileName)
 	}
 	CHK_BOOL(m_inf.IsRGB24());
 
-	int nFrames = m_inf.num_frames;
+	m_frameCount = m_inf.num_frames;
 	for (int iSample = 0; iSample < nSamples; iSample++)
 	{
-		int sampleNo = (iSample + 1) * nFrames / (nSamples + 1);
+		int sampleNo = (iSample + 1) * m_frameCount / (nSamples + 1);
 		CHK(AutoCropFrame(sampleNo, &m_left[iSample], &m_top[iSample], &m_right[iSample], &m_bottom[iSample]));
 	}
 
@@ -252,5 +253,11 @@ STDMETHODIMP CAutoCrop::get_Right(USHORT* pVal)
 STDMETHODIMP CAutoCrop::get_Bottom(USHORT* pVal)
 {
 	*pVal = (USHORT)m_mBottom;
+	return S_OK;
+}
+
+STDMETHODIMP CAutoCrop::get_FrameCount(int* pVal)
+{
+	*pVal = m_frameCount;
 	return S_OK;
 }

@@ -21,6 +21,7 @@ interface IAutoCrop : IDispatch{
 	[propget, id(3), helpstring("property Top")] HRESULT Top([out, retval] USHORT* pVal);
 	[propget, id(4), helpstring("property Right")] HRESULT Right([out, retval] USHORT* pVal);
 	[propget, id(5), helpstring("property Bottom")] HRESULT Bottom([out, retval] USHORT* pVal);
+	[propget, id(6), helpstring("property FrameCount")] HRESULT FrameCount([out, retval] int* pVal);
 };
 [
 	uuid(77A95C87-B241-4D29-8B66-D60F66B821F1),

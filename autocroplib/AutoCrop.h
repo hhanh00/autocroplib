@@ -45,6 +45,7 @@ public:
 	STDMETHOD(get_Top)(USHORT* pVal);
 	STDMETHOD(get_Right)(USHORT* pVal);
 	STDMETHOD(get_Bottom)(USHORT* pVal);
+	STDMETHOD(get_FrameCount)(int* pVal);
 
 private:
 	HRESULT AutoCropFrame(int frameNo, int *pLeft, int *pTop, int *pRight, int *pBottom);
@@ -56,6 +57,8 @@ private:
 	VideoInfo m_inf;
 	int m_left[nSamples], m_top[nSamples], m_right[nSamples], m_bottom[nSamples];
 	int m_mLeft, m_mTop, m_mRight, m_mBottom;
+
+	int m_frameCount;
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(AutoCrop), CAutoCrop)
