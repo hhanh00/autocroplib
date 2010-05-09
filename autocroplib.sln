@@ -1,12 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "autocroplib", "autocroplib\autocroplib.vcproj", "{766D0FAA-2FE3-40A2-A7DA-B55A983A9001}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "autocroplib", "autocroplib\autocroplib.vcxproj", "{766D0FAA-2FE3-40A2-A7DA-B55A983A9001}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "autocropClient", "autocropClient\autocropClient.vcproj", "{EBB6FF75-F493-4256-9794-74A33BA86001}"
-	ProjectSection(ProjectDependencies) = postProject
-		{766D0FAA-2FE3-40A2-A7DA-B55A983A9001} = {766D0FAA-2FE3-40A2-A7DA-B55A983A9001}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "autocropClient", "autocropClient\autocropClient.vcxproj", "{EBB6FF75-F493-4256-9794-74A33BA86001}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

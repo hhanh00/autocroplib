@@ -2,7 +2,7 @@
 
 #pragma once
 #include "resource.h"       // main symbols
-
+#include <memory>
 #include "autocroplib_i.h"
 
 
@@ -13,6 +13,18 @@
 const int nSamples = 9;
 
 class IScriptEnvironment;
+
+class HLib
+{
+public:
+	HLib(wchar_t *pwszLibName);
+	~HLib();
+	operator HMODULE() { return m_hLib; }
+
+private:
+	HMODULE m_hLib;
+};
+
 // CAutoCrop
 
 class ATL_NO_VTABLE CAutoCrop :
@@ -35,9 +47,7 @@ END_COM_MAP()
 	DECLARE_PROTECT_FINAL_CONSTRUCT()
 
 	HRESULT FinalConstruct();
-	void FinalRelease()
-	{
-	}
+	void FinalRelease();
 
 public:
 	STDMETHOD(GetAutoCropValues)(BSTR fileName);
@@ -52,7 +62,8 @@ private:
 	HRESULT Median(int *pValues, int *pMedian);
 
 	WCHAR m_path[MAX_PATH];
-	IScriptEnvironment *m_pEnv;
+	std::auto_ptr<HLib> m_hLib;
+	std::auto_ptr<IScriptEnvironment> m_pEnv;
 	PClip m_clp;
 	VideoInfo m_inf;
 	int m_left[nSamples], m_top[nSamples], m_right[nSamples], m_bottom[nSamples];

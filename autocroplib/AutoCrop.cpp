@@ -12,6 +12,17 @@ using namespace Gdiplus;
 #define CHK_BOOL(x) \
 	do { if (!(x)) return E_FAIL; } while (0)
 
+HLib::HLib(wchar_t *pwszLibName)
+{
+	m_hLib = LoadLibrary(L"avisynth.dll");
+}
+
+HLib::~HLib()
+{
+	FreeLibrary(m_hLib);
+}
+
+
 inline DWORD *getPixel(BYTE *pixel, int stride, int x, int y)
 {
 	return (DWORD *)(pixel + stride * y) + x;
@@ -32,6 +43,7 @@ bool scan(DWORD *pStart, int delta, int count)
 
 CAutoCrop::CAutoCrop()
 : m_pEnv(NULL),
+m_hLib(0),
 m_frameCount(0)
 {
 }
@@ -42,16 +54,20 @@ HRESULT CAutoCrop::FinalConstruct()
 	ULONG_PTR gdiplusToken;
 	GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 
-	HMODULE hLib = LoadLibrary(L"avisynth.dll");
-	CHK_BOOL(hLib != 0);
+	m_hLib = std::auto_ptr<HLib>(new HLib(L"avisynth.dll"));
+	CHK_BOOL(m_hLib.get() != 0);
 
-	IScriptEnvironment* (__stdcall *CreateScriptEnvironment)(int version) = (IScriptEnvironment* (__stdcall *)(int)) GetProcAddress(hLib, "CreateScriptEnvironment");
+	IScriptEnvironment* (__stdcall *CreateScriptEnvironment)(int version) = (IScriptEnvironment* (__stdcall *)(int)) GetProcAddress(*m_hLib.get(), "CreateScriptEnvironment");
 	CHK_BOOL(CreateScriptEnvironment != 0);
 
-	m_pEnv = CreateScriptEnvironment(AVISYNTH_INTERFACE_VERSION);
-	CHK_BOOL(m_pEnv != NULL);
+	m_pEnv = std::auto_ptr<IScriptEnvironment>(CreateScriptEnvironment(AVISYNTH_INTERFACE_VERSION));
+	CHK_BOOL(m_pEnv.get() != NULL);
 
 	return S_OK;
+}
+
+void CAutoCrop::FinalRelease()
+{
 }
 
 inline int roundUp(int x, int align)
@@ -95,7 +111,7 @@ HRESULT CAutoCrop::AutoCropFrame(int frameNo, int *pLeft, int *pTop, int *pRight
 	int width = m_inf.width;
 	int height = m_inf.height;
 
-	PVideoFrame frame = m_clp->GetFrame(frameNo, m_pEnv);
+	PVideoFrame frame = m_clp->GetFrame(frameNo, m_pEnv.get());
 
 	Bitmap *pBitmap = new Bitmap(width, height);
 	BitmapData* pBitmapData = new BitmapData;
